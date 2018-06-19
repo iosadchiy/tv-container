@@ -11,10 +11,6 @@ static char child_stack[STACK_SIZE];
 
 static int child_fn() {
     printf("Clone internal PID: %ld\n", (long) getpid());
-    pid_t child_pid = fork();
-    if (child_pid) {
-        printf("Clone fork child PID: %ld\n", (long) child_pid);
-    }
     execl("/bin/bash", "bash", "-i");
     return EXIT_SUCCESS;
 }
