@@ -25,6 +25,7 @@ int systemf(const char *cmd_format, ...) {
 // The body of the container:
 // do the setup and exec bash
 static int child_fn() {
+    // Mount /proc to filter the processes visible to the container
     printf("Clone internal PID: %ld\n", (long) getpid());
     system("mount -t proc proc /proc --make-private");
     system("ps aux");
@@ -33,8 +34,11 @@ static int child_fn() {
     system("ip link");
     printf("\n\n");
 
+    // Setup network inside the container
+    // It can ping host: `ping 10.1.1.1`
     systemf("ifconfig veth1 10.1.1.2/24 up");
 
+    // Container's /home is actually inside the /tmp/tv_filesystem file
     system("mount /dev/loop1 /home");
 
     execl("/bin/bash", "bash", "-i", NULL);
