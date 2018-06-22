@@ -1,0 +1,27 @@
+root@94386069595a:/# sysbench --threads=100 mutex run
+sysbench 1.0.11 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 100
+Initializing random number generator from current time
+
+
+Initializing worker threads...
+
+Threads started!
+
+
+General statistics:
+    total time:                          37.1079s
+    total number of events:              100
+
+Latency (ms):
+         min:                              33394.58
+         avg:                              35775.09
+         max:                              37099.97
+         95th percentile:                  37144.33
+         sum:                            3577508.70
+
+Threads fairness:
+    events (avg/stddev):           1.0000/0.00
+    execution time (avg/stddev):   35.7751/0.94
